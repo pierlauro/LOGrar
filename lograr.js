@@ -35,7 +35,7 @@ function inspectBF(){
     }
     /* ---- END magic */
 
-    const BFregex = new RegExp("fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAILURE\"", "i");
+    const BFregex = new RegExp("fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL[URE]?\"|throwing exception", "i");
 
     const appState = appStates[0];
 
