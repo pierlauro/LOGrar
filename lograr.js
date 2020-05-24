@@ -62,7 +62,7 @@ function inspectBF(){
     window.location.href = beginUri + beginUriSeparator + bookmarks.join(bookmarksSeparator) + endUriSeparator + endUri;
 }
 
-var toolbar = document.getElementsByClassName('btn-toolbar')[0]
+var toolbar = document.getElementsByClassName('nav nav-pills')[0]
 // TODO remove dirty hack to inject function, append function to window context
 toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick=\'' + inspectBF.toString().replace(/\n|\t/g,' ') + '; inspectBF();\'>BF 💩</button>'
 
