@@ -35,6 +35,8 @@ function inspectBF(){
     }
     /* ---- END magic */
 
+    const BFregex = new RegExp("assert|frame|invariant failure|stacktrace|backtrace|failed to load|segmentation fault|error occurred");
+
     const appState = appStates[0];
 
     const logLines = appState.log.lines;
@@ -49,8 +51,7 @@ function inspectBF(){
     var bookmarks = window.location.href.split(beginUriSeparator)[1].split(endUriSeparator)[0].split(bookmarksSeparator).map(Number).sort(function(i, j) { return i - j; });
 
     logLines.forEach(line => {
-    	// TODO regex for multiple strings
-        if(line.text.includes("frame")){
+        if(line.text.match(BFregex)){
             bookmarks.push(line.lineNumber);
         }
     });
@@ -62,6 +63,6 @@ function inspectBF(){
 }
 
 var toolbar = document.getElementsByClassName('btn-toolbar')[0]
-// TODO delete dirty hack to inject function
+// TODO remove dirty hack to inject function, append function to window context
 toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick=\'' + inspectBF.toString().replace(/\n|\t/g,' ') + '; inspectBF();\'>BF 💩</button>'
 
