@@ -4,7 +4,7 @@
 // @version      1.0-alpha
 // @description  Rapid log inspection for lobster
 // @author       Pierlauro Sciarelli
-// @match        https://logkeeper.mongodb.org/lobster/build/5449fd3c31e9b471aa0557f6f44e63c5/test/5ec697e2f84ae8682b012268
+// @match        https://logkeeper.mongodb.org/lobster/build/*
 // @grant        none
 // ==/UserScript==
 
