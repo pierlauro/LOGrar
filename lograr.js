@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LOGrar
 // @namespace    pstux.dev
-// @version      1.0-alpha
+// @version      1.0-beta
 // @description  Rapid log inspection for lobster
 // @author       Pierlauro Sciarelli
 // @match        https://logkeeper.mongodb.org/lobster/build/*
@@ -12,7 +12,7 @@
 
 function inspectBF(){
     /* ---- BEGIN redux state magic
-        * https://stackoverflow.com/a/57909332 */
+     * https://stackoverflow.com/a/57909332 */
     const appStates = [];
     const reactRoot = document.getElementById("root");
     let base;
@@ -35,8 +35,8 @@ function inspectBF(){
     }
     /* ---- END magic */
 
-    const BFregex = new RegExp("fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL[URE]?\"|throwing exception", "i");
-
+    // TODO allow dinamically modifying the regex from a textarea
+    const BFregex = new RegExp("fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL(URE)?\"|throwing exception", "i");
     const appState = appStates[0];
 
     const logLines = appState.log.lines;
@@ -62,7 +62,11 @@ function inspectBF(){
     window.location.href = beginUri + beginUriSeparator + bookmarks.join(bookmarksSeparator) + endUriSeparator + endUri;
 }
 
+// Exposing inspectBF
+window.greasmonkeyFunctions = {};
+window.greasmonkeyFunctions.inspectBF = inspectBF;
+
+// Adding button to toolbar
 var toolbar = document.getElementsByClassName('nav nav-pills')[0]
-// TODO remove dirty hack to inject function, append function to window context
-toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick=\'' + inspectBF.toString().replace(/\n|\t/g,' ') + '; inspectBF();\'>BF 💩</button>'
+toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick="window.greasmonkeyFunctions.inspectBF()">BF 💩</button>'
 
