@@ -13,7 +13,7 @@
 function inspectBF(){
     /* ---- BEGIN redux state magic
      * https://stackoverflow.com/a/57909332 */
-    const appStates = [];
+    var appState;
     const reactRoot = document.getElementById("root");
     let base;
 
@@ -26,18 +26,19 @@ function inspectBF(){
 
     while (base) {
         try {
-            var state = base.pendingProps.store.getState();
-            appStates.push(state);
+            appState = base.pendingProps.store.getState();
+            break;
         } catch (e) {
-            /* no state */
+            /* no state, keep on searching */
         }
         base = base.child;
     }
     /* ---- END magic */
 
+    console.assert(appState);
+
     // TODO allow dinamically modifying the regex from a textarea
     const BFregex = new RegExp("DBException::toString|fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL(URE)?\"|throwing exception", "i");
-    const appState = appStates[0];
 
     const logLines = appState.log.lines;
 
