@@ -1,5 +1,5 @@
 # LOGrar
-Rapid log inspection for lobster
+Rapid MongoDB BF log inspection for [Lobster](https://github.com/evergreen-ci/lobster)
 
-- Install greasemonkey/tampermonkey and impor the script
+- Install greasemonkey/tampermonkey and import the script
 - Enjoy
