@@ -37,7 +37,7 @@ function inspectBF(){
 
     console.assert(appState);
 
-    // TODO allow dinamically modifying the regex from a textarea
+    /* TODO allow dinamically modifying the regex from a textarea */
     const BFregex = new RegExp("DBException::toString|fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL(URE)?\"|throwing exception", "i");
 
     const logLines = appState.log.lines;
@@ -63,11 +63,6 @@ function inspectBF(){
     window.location.href = beginUri + beginUriSeparator + bookmarks.join(bookmarksSeparator) + endUriSeparator + endUri;
 }
 
-// Exposing inspectBF
-window.greasmonkeyFunctions = {};
-window.greasmonkeyFunctions.inspectBF = inspectBF;
-
-// Adding button to toolbar
+// Adding button to toolbar (injecting function code for cross-browser compatibility)
 var toolbar = document.getElementsByClassName('nav nav-pills')[0]
-toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick="window.greasmonkeyFunctions.inspectBF()">BF 💩</button>'
-
+toolbar.innerHTML += '<button type="button" class="btn btn-default" onclick=\'' + inspectBF.toString().replace(/\n|\t/g,' ') + '; inspectBF();\'>BF 💩</button>'
