@@ -5,6 +5,7 @@
 // @description  Rapid log inspection for lobster
 // @author       Pierlauro Sciarelli
 // @match        https://logkeeper.mongodb.org/lobster/build/*
+// @match        https://evergreen.mongodb.org/lobster/build/*
 // @grant        none
 // ==/UserScript==
 
