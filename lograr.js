@@ -39,7 +39,7 @@ function inspectBF(){
     console.assert(appState);
 
     /* TODO allow dinamically modifying the regex from a textarea */
-    const BFregex = new RegExp("DBException::toString|fassert|assert\\.|frame|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL(URE)?\"|throwing exception", "i");
+    const BFregex = new RegExp("DBException::toString|fassert|assert\\.|\"frame\"|invariant[ |\(\)]|got signal|stacktrace|backtrace|failed to load|segmentation fault|error occurred|\"FAIL(URE)?\"|throwing exception", "i");
 
     const logLines = appState.log.lines;
 
